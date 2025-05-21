@@ -51,33 +51,24 @@
       align-items: center;
     }
 
-    .security-app__logo {
+    /* Estilos para el nuevo logo */
+    .logo {
       display: flex;
       align-items: center;
-      font-weight: 600;
-      font-size: 20px;
-      color: var(--black);
       gap: 8px;
-      letter-spacing: -0.5px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #1f2937;
     }
 
-    .security-app__logo-icon {
+    .logo-icon {
       width: 32px;
       height: 32px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #0071e3, #40a9ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
+      color: #4f46e5;
     }
 
-    .security-app__logo-icon::before {
-      content: "TS";
-      color: white;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
+    .logo-text {
+      font-weight: 700;
     }
 
     .security-app__back-link {

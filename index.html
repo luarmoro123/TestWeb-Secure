@@ -24,19 +24,34 @@
                 </svg>
                 <span class="logo-text">TestWeb Secure</span>
             </div>
+
+            <!-- Botón del menú móvil -->
+            <button class="mobile-menu-button">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
             <div class="nav-links">
                 <a href="#" class="nav-link active">Inicio</a>
                 <a href="#caracteristicas" class="nav-link">Características</a>
                 <a href="#funcionamiento" class="nav-link">Funcionamiento</a>
                 <a href="#acerca" class="nav-link">Acerca del Proyecto</a>
+                <!-- Botones SOLO para móvil -->
+                <div class="mobile-buttons">
+                    <a href="sesion.html" class="login-button">Iniciar Sesión</a>
+                    <a href="registro.html" class="regist-button">Registrar</a>
+                </div>
             </div>
-            <div>
-                <a href="sesion.html"><button class="login-button" href="sesion.html">Iniciar Sesión</button></a>
-                <a href="registro.html"><button class="regist-button">Registrar</button></a>
+
+            <!-- Botones SOLO para desktop -->
+            <div class="nav-buttons">
+                <a href="sesion.html" class="login-button">Iniciar Sesión</a>
+                <a href="registro.html" class="regist-button">Registrar</a>
             </div>
         </div>
     </nav>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container container">
@@ -360,6 +375,7 @@
             "retina_detect": true
         });
     </script>
+    <script src="javascript/index.js"></script>
 </body>
 
 </html>

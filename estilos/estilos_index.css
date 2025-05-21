@@ -16,43 +16,27 @@ body {
 
 /* Estilos para el navbar */
 .navbar {
+    display: flex;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 12px 0;
+    position: relative;
+    z-index: 1000;
 }
 
 .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
-
-.nav-link {
-    color: rgba(0, 0, 0, 0.8);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
-    padding: 0.5rem 0;
-}
-
-.nav-link:hover {
-    color: #6ba0f4;
-}
-
-.nav-link.active {
-    color: #298efb;
-}
-
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-shrink: 0;
 }
 
 .logo-icon {
@@ -67,6 +51,55 @@ body {
     color: #1f2937;
 }
 
+/* Botón menú móvil */
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.mobile-menu-button svg {
+    width: 24px;
+    height: 24px;
+    color: #1f2937;
+}
+
+/* Enlaces de navegación */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    color: rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.nav-link:hover {
+    color: #6ba0f4;
+}
+
+.nav-link.active {
+    color: #298efb;
+}
+
+/* Contenedor de botones en desktop */
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Botones */
 .login-button {
     background-color: #298efb;
     color: white;
@@ -76,6 +109,8 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .login-button:hover {
@@ -90,10 +125,122 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    background-color: transparent;
 }
 
 .regist-button:hover {
     background-color: #eceaea;
+}
+
+
+/* Estilos para móviles */
+@media (max-width: 768px) {
+    .container {
+        max-width: 95%;
+        padding: 0 10px;
+    }
+
+    .mobile-menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+
+    /* Contenedor de botones en móvil */
+    .mobile-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 15px 20px;
+        gap: 10px;
+        border-top: 1px solid #f0f0f0;
+        margin-top: 10px;
+    }
+
+    .login-button,
+    .regist-button {
+        width: 80%;
+        margin: 8px auto;
+        text-align: center;
+        display: block;
+    }
+
+    /* Ocultamos los botones originales en móvil */
+    .nav-buttons {
+        display: none;
+    }
+
+    .nav-buttons {
+        display: none;
+        /* Esto oculta los botones de desktop en móviles */
+    }
+
+    .mobile-buttons {
+        display: flex;
+        /* Muestra los botones en el menú móvil */
+        flex-direction: column;
+        width: 80%;
+        margin: 15px auto 0;
+        gap: 10px;
+    }
+
+    /* Elimina el borde superior si no es necesario */
+    /* .mobile-buttons {
+        border-top: 1px solid #f0f0f0;
+    } */
+
+}
+
+@media (min-width: 769px) {
+    .mobile-buttons {
+        display: none;
+        /* Oculta los botones móviles en desktop */
+    }
+
+    .nav-buttons {
+        display: flex;
+        /* Muestra los botones de desktop */
+        gap: 1rem;
+    }
+}
+
+/* Ajustes adicionales para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
 }
 
 /* Estilos para la sección hero */
@@ -148,13 +295,14 @@ body {
 .primary-button {
     background-color: white;
     color: #4f46e5;
-    font-weight: 500;
+    font-weight: 1000;
     padding: 12px 24px;
     border-radius: 4px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
     text-align: center;
+    font-size: 1.1rem;
 }
 
 .primary-button:hover {
@@ -164,13 +312,14 @@ body {
 .secondary-button {
     border: 1px solid white;
     color: white;
-    font-weight: 500;
+    font-weight: 1000;
     padding: 12px 24px;
     border-radius: 4px;
     background-color: transparent;
     cursor: pointer;
     transition: background-color 0.3s;
     text-align: center;
+    font-size: 1.1rem;
 }
 
 .secondary-button:hover {
