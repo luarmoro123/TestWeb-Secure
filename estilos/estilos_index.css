@@ -1,4 +1,8 @@
-/* Estilos base */
+html {
+    scroll-behavior: smooth;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -134,9 +138,8 @@ body {
     background-color: #eceaea;
 }
 
-
 /* Estilos para móviles */
-@media (max-width: 768px) {
+@media (max-width: 1500px) {
     .container {
         max-width: 95%;
         padding: 0 10px;
@@ -158,6 +161,7 @@ body {
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         transform: translateY(-150%);
         transition: transform 0.3s ease-in-out;
+        z-index: 999;
     }
 
     .nav-links.active {
@@ -194,36 +198,22 @@ body {
         display: none;
     }
 
-    .nav-buttons {
-        display: none;
-        /* Esto oculta los botones de desktop en móviles */
-    }
-
     .mobile-buttons {
         display: flex;
-        /* Muestra los botones en el menú móvil */
         flex-direction: column;
         width: 80%;
         margin: 15px auto 0;
         gap: 10px;
     }
-
-    /* Elimina el borde superior si no es necesario */
-    /* .mobile-buttons {
-        border-top: 1px solid #f0f0f0;
-    } */
-
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1500px) {
     .mobile-buttons {
         display: none;
-        /* Oculta los botones móviles en desktop */
     }
 
     .nav-buttons {
         display: flex;
-        /* Muestra los botones de desktop */
         gap: 1rem;
     }
 }
@@ -297,7 +287,7 @@ body {
     color: #4f46e5;
     font-weight: 1000;
     padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -306,7 +296,7 @@ body {
 }
 
 .primary-button:hover {
-    background-color: #f3f4f6;
+    background-color: #eaeaea;
 }
 
 .secondary-button {
@@ -314,7 +304,7 @@ body {
     color: white;
     font-weight: 1000;
     padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 20px;
     background-color: transparent;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -324,6 +314,7 @@ body {
 
 .secondary-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
 }
 
 .hero-image {

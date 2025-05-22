@@ -1,7 +1,5 @@
-// Actualizar año automáticamente
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
-// Password strength checker
 const passwordInput = document.getElementById('password');
 const passwordStrength = document.getElementById('passwordStrength');
 const passwordStrengthText = document.getElementById('passwordStrengthText');
@@ -12,30 +10,24 @@ passwordInput.addEventListener('input', function () {
     const password = passwordInput.value;
     let strength = 0;
 
-    // Length check
     if (password.length >= 8) {
         strength += 25;
     }
 
-    // Contains lowercase
     if (/[a-z]/.test(password)) {
         strength += 25;
     }
 
-    // Contains uppercase
     if (/[A-Z]/.test(password)) {
         strength += 25;
     }
 
-    // Contains number or special char
     if (/[0-9!@#$%^&*(),.?":{}|<>]/.test(password)) {
         strength += 25;
     }
 
-    // Update UI
     passwordStrength.style.width = strength + '%';
 
-    // Remove all classes first
     passwordStrength.className = 'password-strength-bar';
     passwordStrengthText.className = 'password-strength-text';
 
@@ -57,7 +49,6 @@ passwordInput.addEventListener('input', function () {
         passwordStrengthText.style.color = '#10b981';
     }
 
-    // Check if passwords match
     checkPasswordsMatch();
 });
 
@@ -81,35 +72,50 @@ function checkPasswordsMatch() {
     }
 }
 
-// Form submission handler
-document.getElementById('registerForm').addEventListener('submit', function (e) {
+document.getElementById('registerForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const organization = document.getElementById('organization').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-
-    // Validate passwords match
-    if (password !== confirmPassword) {
-        alert('Las contraseñas no coinciden');
-        return;
-    }
-
-    // Validate terms checkbox
     if (!document.getElementById('terms').checked) {
         alert('Debes aceptar los términos y condiciones');
         return;
     }
 
-    // Here you would normally send the data to your backend
-    console.log('Registration data:', { firstName, lastName, email, organization, password });
+    if (passwordInput.value !== confirmPasswordInput.value) {
+        alert('Las contraseñas no coinciden');
+        return;
+    }
 
-    // For demo purposes, simulate a successful registration
-    alert('¡Registro exitoso! Redirigiendo al inicio de sesión...');
+    const formData = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        organization: document.getElementById('organization').value.trim(), 
+        password: passwordInput.value
+    };
 
-    // Redirect to login (in a real app)
-    // window.location.href = 'login.html';
-});
+
+    try {
+        const response = await fetch('php/registro.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Error en el registro');
+        }
+
+        alert('¡Registro exitoso! Serás redirigido automáticamente');
+        setTimeout(() => {
+            window.location.href = 'sesion.php';
+        }, 2000);
+
+    } catch (error) {
+        console.error('Error:', error);
+        alert(error.message);
+    }
+}); 

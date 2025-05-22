@@ -20,7 +20,7 @@
             <!-- Left Side - Form -->
             <div class="w-full md:w-1/2 bg-white p-8 md:p-12">
                 <div class="flex justify-center mb-8">
-                    <a href="index.html" class="flex items-center space-x-2">
+                    <a href="index.php" class="flex items-center space-x-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -35,39 +35,68 @@
                     <p class="text-gray-600">Inicia sesión para acceder a tu cuenta</p>
                 </div>
 
-                <form id="loginForm" class="space-y-6">
+                <form id="loginForm" class="space-y-6" method="POST">
+                    
+                    
+                    <!-- Mensajes de error -->
+                    <div id="login-error" class="hidden py-3 px-4 mb-4 bg-red-50 text-red-700 rounded-md text-sm"></div>
+
+                    <!-- Campo email -->
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo
-                            electrónico</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
                         <input type="email" id="email" name="email"
                             class="form-input w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none"
-                            placeholder="tu@email.com" required>
+                            placeholder="tu@email.com" 
+                            required
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                     </div>
 
+                    <!-- Campo contraseña -->
                     <div>
                         <div class="flex items-center justify-between mb-1">
                             <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                            <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800">¿Olvidaste tu
-                                contraseña?</a>
+                            <a href="forgot-password.php" class="text-sm text-indigo-600 hover:text-indigo-800">¿Olvidaste tu contraseña?</a>
                         </div>
-                        <input type="password" id="password" name="password"
-                            class="form-input w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none"
-                            placeholder="••••••••" required>
+                        <div class="relative">
+                            <input type="password" id="password" name="password"
+                                class="form-input w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none"
+                                placeholder="••••••••" 
+                                required
+                                minlength="8">
+                            <!-- Botón para mostrar/ocultar contraseña -->
+                            <button type="button" class="absolute inset-y-0 right-0 pr-3 flex items-center" onclick="togglePassword()">
+                                <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
+                    <!-- Recordar sesión -->
                     <div class="flex items-center">
                         <input type="checkbox" id="remember" name="remember"
                             class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                         <label for="remember" class="ml-2 block text-sm text-gray-700">Mantener sesión iniciada</label>
                     </div>
 
+                    <!-- Botón de submit -->
                     <div>
                         <button type="submit"
-                            class="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                            class="w-full bg-indigo-600 text-white py-3 px-4 rounded-md hover:bg-indigo-700 transition focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            id="login-btn">
                             Iniciar Sesión
                         </button>
                     </div>
                 </form>
+
+                <script>
+                // Función para mostrar/ocultar contraseña
+                function togglePassword() {
+                    const passwordInput = document.getElementById('password');
+                    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+                }
+                </script>
 
                 <div class="mt-8">
                     <div class="relative">
@@ -112,7 +141,7 @@
 
                 <p class="mt-8 text-center text-sm text-gray-600">
                     ¿No tienes una cuenta?
-                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-800">Regístrate</a>
+                    <a href="registro.php" class="font-medium text-indigo-600 hover:text-indigo-800">Regístrate</a>
                 </p>
             </div>
 
@@ -186,7 +215,7 @@
         </div>
     </footer>
 
-    <script src="js_sesion.js"></script>
+    <script src="javascript/js_sesion.js"></script>
 </body>
 
 </html>

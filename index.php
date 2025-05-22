@@ -9,24 +9,47 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="estilos_index.css">
+    <link rel="stylesheet" href="estilos/estilos_index.css">
 </head>
 
 <body>
-    <!-- Navbar -->
+        <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container container">
+            <!-- Logo -->
             <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
                 <span class="logo-text">TestWeb Secure</span>
             </div>
-            <div>
-                <a href="sesion.html"><button class="login-button" href="sesion.html">Iniciar Sesión</button></a>
-                <a href="registro.html"><button class="regist-button">Registrar</button></a>
+
+            <!-- Botón menú móvil -->
+            <button class="mobile-menu-button" aria-label="Abrir menú de navegación">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <!-- Enlaces de navegación -->
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Inicio</a>
+                <a href="#caracteristicas" class="nav-link">Características</a>
+                <a href="#funcionamiento" class="nav-link">Funcionamiento</a>
+                <a href="#acerca" class="nav-link">Acerca del Proyecto</a>
+                <!-- Botones SOLO para móvil -->
+                <div class="mobile-buttons">
+                    <a href="sesion.php" class="login-button">Iniciar Sesión</a>
+                    <a href="registro.php" class="regist-button">Registrar</a>
+                </div>
+            </div>
+
+            <!-- Botones SOLO para desktop -->
+            <div class="nav-buttons">
+                <a href="sesion.php" class="login-button">Iniciar Sesión</a>
+                <a href="registro.php" class="regist-button">Registrar</a>
             </div>
         </div>
     </nav>
@@ -39,8 +62,8 @@
                 <p class="hero-description">TestWeb Secure es una aplicación orientada a la detección de
                     vulnerabilidades web básicas en sitios de prueba, desarrollada como proyecto universitario.</p>
                 <div class="hero-buttons">
-                 <a href="index2.html"><button class="primary-button" href="index2.html">Comenzar Ahora</button></a>
-                    <button class="secondary-button">Ver Demo</button>
+                    <a href="sesion.php"><button class="primary-button">Comenzar Ahora</button></a>
+                    <a href="escaneo.php"><button class="secondary-button">Ver Demo</button></a>
                 </div>
             </div>
             <div class="hero-image">
@@ -71,7 +94,7 @@
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">Características Principales</h2>
+            <h2 class="section-title" id="caracteristicas">Características Principales</h2>
             <div class="features-grid">
                 <!-- Feature 1 -->
                 <div class="feature-card">
@@ -96,9 +119,11 @@
                                 d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                         </svg>
                     </div>
-                    <h3 class="feature-title">Análisis XSS</h3>
-                    <p class="feature-description">Detecta vulnerabilidades de Cross-Site Scripting reflejado en páginas
-                        web.</p>
+                    <h3 class="feature-title">Análisis de Puertos Vulnerables</h3>
+                    <p class="feature-description">
+                        Examina los puertos abiertos en una IP para identificar servicios expuestos y posibles fallos de
+                        seguridad.
+                    </p>
                 </div>
 
                 <!-- Feature 3 -->
@@ -110,8 +135,9 @@
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                     </div>
-                    <h3 class="feature-title">Revisión de Headers</h3>
-                    <p class="feature-description">Evalúa la seguridad de los encabezados HTTP y sugiere mejoras.</p>
+                    <h3 class="feature-title">Diagnóstico del Dominio y Encabezados HTTP</h3>
+                    <p class="feature-description">Evalúa la configuración del dominio y los encabezados HTTP,
+                        proponiendo mejoras para proteger contra ataques como clickjacking y sniffing.</p>
                 </div>
 
                 <!-- Feature 4 -->
@@ -134,7 +160,7 @@
     <!-- How It Works -->
     <section class="how-it-works">
         <div class="container">
-            <h2 class="section-title">¿Cómo Funciona?</h2>
+            <h2 class="section-title" id="funcionamiento">¿Cómo Funciona?</h2>
             <div class="steps-container">
                 <!-- Step 1 -->
                 <div class="step">
@@ -183,7 +209,7 @@
     <section class="about">
         <div class="container">
             <div class="about-container">
-                <h2 class="about-title">Acerca del Proyecto</h2>
+                <h2 class="about-title" id="acerca">Acerca del Proyecto</h2>
                 <div class="about-text">
                     <p><span class="gradient-text">"TestWeb Secure"</span> es una aplicación web orientada a la
                         detección de vulnerabilidades web básicas en sitios de prueba. La aplicación permite a los
@@ -270,7 +296,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p class="footer-copyright">&copy; 2023 TestWeb Secure. Todos los derechos reservados.</p>
+                <p class="footer-copyright">&copy; 2025 TestWeb Secure. Todos los derechos reservados.</p>
                 <div class="footer-social">
                     <a href="#" class="social-link">
                         <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24">
@@ -300,6 +326,19 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const name = sessionStorage.getItem('welcomeName');
+            if (name) {
+                alert(`Bienvenido ${name}!`);
+                sessionStorage.removeItem('welcomeName'); 
+            }
+        });
+    </script>
+
+
+    
+    <script src="javascript/index.js"></script>
 </body>
 
 </html>

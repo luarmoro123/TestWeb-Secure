@@ -5,13 +5,11 @@ document.getElementById('scan-form').addEventListener('submit', function (e) {
   const resultDiv = document.getElementById('result');
   const scanButton = document.getElementById('scan-button');
 
-  // Reset estado
   scanButton.disabled = true;
   progressBar.style.width = '0%';
   document.getElementById('scan-progress').style.display = 'block';
   resultDiv.style.display = 'none';
 
-  // Simular progreso
   let width = 0;
   const interval = setInterval(() => {
     if (width >= 100) {
@@ -24,7 +22,6 @@ document.getElementById('scan-form').addEventListener('submit', function (e) {
     }
   }, 50);
 
-  // Actualizar datos
   const url = document.getElementById('url-input').value;
   const scanType = document.getElementById('scan-option').value;
 

@@ -1,19 +1,82 @@
-// Actualizar año automáticamente
 document.getElementById('current-year').textContent = new Date().getFullYear();
 
-// Form submission handler
-document.getElementById('loginForm').addEventListener('submit', function (e) {
+
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const submitBtn = document.querySelector('#loginForm button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="loader"></span> Autenticando...';
+    submitBtn.disabled = true;
 
-    // Here you would normally send the data to your backend
-    console.log('Login attempt:', { email, password });
+    const formData = {
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value
+    };
 
-    // For demo purposes, simulate a successful login
-    alert('Inicio de sesión exitoso! Redirigiendo al dashboard...');
+    try {
+        const response = await fetch('php/login.php', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+        });
 
-    // Redirect to dashboard (in a real app)
-    // window.location.href = 'dashboard.html';
+        const text = await response.text();
+
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            throw new Error('Respuesta inválida del servidor: ' + text);
+        }
+
+        if (!response.ok) {
+            throw new Error(data.error || 'Error en el servidor');
+        }
+
+        if (data.name) {
+            sessionStorage.setItem('welcomeName', data.name);
+        } else {
+            sessionStorage.setItem('welcomeName', 'Usuario');
+        }
+
+        window.location.href = data.redirect;
+
+
+    } catch (error) {
+        console.error('Error:', error);
+
+        const errorElement = document.getElementById('login-error');
+        if (errorElement) {
+            errorElement.textContent = error.message;
+            errorElement.style.display = 'block';
+        } else {
+            alert(error.message);
+        }
+
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+    }
+});
+
+document.getElementById('email').addEventListener('blur', function () {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.value)) {
+        this.setCustomValidity('Por favor ingresa un email válido');
+    } else {
+        this.setCustomValidity('');
+    }
+});
+
+document.querySelector('.toggle-password').addEventListener('click', function () {
+    const passwordInput = document.getElementById('password');
+    const icon = this.querySelector('i');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
 });

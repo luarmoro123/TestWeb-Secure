@@ -16,7 +16,7 @@
     <!-- Register Section -->
     <div class="register-container">
         <div class="register-wrapper">
-            <!-- Left Side - Image/Graphic -->
+
             <div class="register-graphic">
                 <div class="graphic-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -75,14 +75,11 @@
                 </div>
             </div>
 
-            <!-- Right Side - Form -->
             <div class="register-form-container">
                 <div class="form-header">
-                    <a href="index.html" class="logo-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    <a href="index.php" class="logo-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="logo-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                         <span class="logo-text">TestWeb Secure</span>
                     </a>
@@ -93,25 +90,27 @@
                     <p class="form-subtitle">Completa el formulario para registrarte</p>
                 </div>
 
-                <form id="registerForm" class="register-form">
+                <form id="registerForm" class="register-form" action="registro.php" method="POST">
+                    <!-- Token CSRF para seguridad -->
+                    <input type="hidden" name="csrf_token" id="csrf_token" value="<?= $_SESSION['csrf_token'] ?? '' ?>">
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName" class="form-label">Nombre</label>
-                            <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Juan"
-                                required>
+                            <input type="text" id="firstName" name="firstName" class="form-input" placeholder="Juan" required>
                         </div>
 
                         <div class="form-group">
                             <label for="lastName" class="form-label">Apellido</label>
-                            <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Pérez"
-                                required>
+                            <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Pérez" required>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email" class="form-label">Correo electrónico</label>
-                        <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com"
-                            required>
+                        <input type="email" id="email" name="email" class="form-input" 
+                            placeholder="tu@email.com" required
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                     </div>
 
                     <div class="form-group">
@@ -123,7 +122,7 @@
                     <div class="form-group">
                         <label for="password" class="form-label">Contraseña</label>
                         <input type="password" id="password" name="password" class="form-input"
-                            placeholder="Mínimo 8 caracteres" required>
+                            placeholder="Mínimo 8 caracteres" required minlength="8">
                         <div class="password-strength-container">
                             <div class="password-strength-header">
                                 <span class="password-strength-label">Seguridad de la contraseña:</span>
@@ -187,7 +186,7 @@
                 </div>
 
                 <div class="login-link-container">
-                    <p>¿Ya tienes una cuenta? <a href="login.html" class="login-link">Inicia sesión</a></p>
+                    <p>¿Ya tienes una cuenta? <a href="sesion.php" class="login-link">Inicia sesión</a></p>
                 </div>
             </div>
         </div>
@@ -201,7 +200,7 @@
         </div>
     </footer>
 
-    <script src="registro.js"></script>
+    <script src="javascript/registro.js"></script>
 </body>
 
 </html>
